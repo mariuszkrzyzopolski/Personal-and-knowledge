@@ -6,8 +6,9 @@
 # Course materials (private)
 AI_devs4/se01e01/
 AI_devs4/se01e02/
-AI_devs4/se01e03/lesson/
-AI_devs4/se01e04/
+AI_devs4/se01e03/lessons/
+AI_devs4/se01e04/lessons/
+AI_devs4/se01e04/code/transport_docs
 
 # Environment files
 *.env
