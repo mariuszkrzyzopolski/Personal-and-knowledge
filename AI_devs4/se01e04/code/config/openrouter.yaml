@@ -1,0 +1,20 @@
+openrouter:
+  api_key: ${OPENROUTER_API_KEY}
+  base_url: "https://openrouter.ai/api/v1"
+  models:
+    default: "deepseek/deepseek-v3.2"
+    alternatives:
+      - "google/gemini-2.0-flash-exp:free"
+      - "meta-llama/llama-3.3-70b-instruct:free"
+      - "openai/gpt-4o-mini"
+  temperature: 0.1
+  max_tokens: 2000
+  
+language:
+  default: "pl"
+  supported: ["pl", "en"]
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  mode: "http"
