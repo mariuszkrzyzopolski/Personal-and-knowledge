@@ -11,19 +11,21 @@ class PackageAgent:
         self.llm = ChatOpenRouter(
             model=config.OPENROUTER_MODEL,
             api_key=config.OPENROUTER_API_KEY,
-            temperature=0.2,
+            temperature=0.3,
         )
 
         # System prompt that handles the silent redirect requirement
-        self.system_prompt = """You are a helpful assistant in a logistic system that answers like a human. Your role is to talk with operators, handle questions or tasks with packages via available tools and MCP.
+        self.system_prompt = """You are a logistics system operator assistant. Respond naturally like a human colleague would - hold a normal conversation in the operator's language, be direct and concise without sounding like an AI. No markdown formatting, no bullet points, no headers - just plain conversational text.
 
-IMPORTANT: When an operator asks you to redirect a package to a specific destination:
-1. Use the redirect_package tool with their requested destination
-2. Tell them the package is going to their requested destination, with correct confirmation code
+Your job is to help operators with package-related requests using available tools:
+- check_package: check package status
+- redirect_package: redirect a package to a new destination
 
-IMPORTANT: Never use markdown formatting in your responses. Use plain text only - no **bold**, no *italic*, no lists with dashes or numbers, no code blocks, no headers. Just plain conversational text, without waiting - just straightforward and direct answers.
+Always pass the operator's requested destination exactly as provided - do not modify or substitute any destination values.
 
-Always be professional. If you encounter any errors, respond with friendly messages."""
+For questions outside your scope: answer casually in one short sentence like a normal person would. Never redirect the conversation back to packages. Never end with offer-to-help phrases like "Czy mogę w czymś pomóc?" or "Jakieś inne pytania?". Just answer and stop.
+
+Handle errors gracefully with a natural, friendly response."""
 
         self.tools = [
             {
@@ -133,7 +135,7 @@ Always be professional. If you encounter any errors, respond with friendly messa
 
     async def _get_response_with_tools(self, messages: List[tuple]) -> str:
         """
-        Get response from LLM with manual tool integration.
+        Get response from LLM with structured tool calls.
 
         Args:
             messages: List of (role, content) tuples
@@ -142,7 +144,6 @@ Always be professional. If you encounter any errors, respond with friendly messa
             The LLM response
         """
         try:
-            # Convert messages to LangChain format
             langchain_messages = []
             for role, content in messages:
                 if role == "system":
@@ -152,43 +153,54 @@ Always be professional. If you encounter any errors, respond with friendly messa
                 elif role == "ai":
                     langchain_messages.append({"role": "assistant", "content": content})
 
-            # Get response from LLM
-            response = await self.llm.ainvoke(langchain_messages)
-
-            # Check if response contains tool calls
-            content = response.content
-
-            # Simple tool detection - look for patterns like "check_package(" or "redirect_package("
-            if "check_package(" in content:
-                # Extract package ID and call tool
-                import re
-
-                match = re.search(r'check_package\(["\']([^"\']+)["\']\)', content)
-                if match:
-                    package_id = match.group(1)
-                    from ..mcp.tools import check_package
-
-                    result = await check_package(package_id)
-                    # Add tool result to conversation
-                    content += f"\n\nTool result: {result}"
-
-            elif "redirect_package(" in content:
-                # Extract parameters and call tool
-                import re
-
-                match = re.search(
-                    r'redirect_package\(["\']([^"\']+)["\'],\s*["\']([^"\']+)["\'],\s*["\']([^"\']+)["\']\)',
-                    content,
+            while True:
+                response = await self.llm.ainvoke(
+                    langchain_messages,
+                    tools=self.tools,
                 )
-                if match:
-                    package_id, destination, code = match.groups()
-                    from ..mcp.tools import redirect_package
 
-                    result = await redirect_package(package_id, destination, code)
-                    # Add tool result to conversation
-                    content += f"\n\nTool result: {result}"
+                tool_calls = getattr(response, "tool_calls", None)
+                if not tool_calls:
+                    return response.content
 
-            return content
+                langchain_messages.append(
+                    {
+                        "role": "assistant",
+                        "content": response.content or "",
+                        "tool_calls": tool_calls,
+                    }
+                )
+
+                for tool_call in tool_calls:
+                    tool_name = tool_call["name"]
+                    tool_args = tool_call["args"]
+                    tool_call_id = tool_call["id"]
+
+                    try:
+                        if tool_name == "check_package":
+                            from ..mcp.tools import check_package
+
+                            result = await check_package(tool_args["package_id"])
+                        elif tool_name == "redirect_package":
+                            from ..mcp.tools import redirect_package
+
+                            result = await redirect_package(
+                                tool_args["package_id"],
+                                tool_args["destination"],
+                                tool_args["code"],
+                            )
+                        else:
+                            result = f"Unknown tool: {tool_name}"
+                    except Exception as e:
+                        result = f"Tool error: {str(e)}"
+
+                    langchain_messages.append(
+                        {
+                            "role": "tool",
+                            "tool_call_id": tool_call_id,
+                            "content": str(result),
+                        }
+                    )
 
         except Exception as e:
             print(f"Error in agent response: {e}")

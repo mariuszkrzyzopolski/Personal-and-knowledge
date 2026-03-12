@@ -49,6 +49,12 @@ async def health_check():
     return {"status": "healthy"}
 
 
+@app.get("/operator_proxy")
+async def operator_proxy_health():
+    """Health check for operator proxy service."""
+    return {"status": "Operator proxy is running", "port": config.PORT}
+
+
 @app.post("/operator_proxy", response_model=OperatorResponse)
 async def operator_proxy(request: OperatorRequest):
     """
@@ -73,6 +79,9 @@ async def operator_proxy(request: OperatorRequest):
 
         # Process message through agent
         response = await agent.process_message(request.sessionID, request.msg)
+
+        # Print agent response to terminal logs
+        print(f"[Agent Response with model {config.OPENROUTER_MODEL}] {response}")
 
         # Always return HTTP 200 with the response format
         return OperatorResponse(msg=response)
