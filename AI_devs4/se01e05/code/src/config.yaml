@@ -1,0 +1,23 @@
+# API Configuration
+api:
+  base_url: "https://hub.ag3nts.org/verify"
+  task: "railway"
+  api_key: "${API_KEY}"  # Set via environment variable or replace with actual key
+
+# OpenRouter Configuration
+openrouter:
+  api_key: "${OPENROUTER_API_KEY}"  # Set via environment variable
+  model: "google/gemma-2-9b-it"
+
+# Agent Configuration
+agent:
+  max_retries: 3
+  retry_delay_base: 1  # Base delay for exponential backoff (seconds)
+  hitl_default: true  # Default to HITL for all routes
+  state_file: "exploration_state.json"
+  help_refresh_interval: 10  # Call help() every N actions to discover new paths
+
+# Rate Limiting
+rate_limit:
+  default_wait: 2  # Default wait between calls (seconds)
+  max_wait: 120  # Maximum wait time (seconds)
