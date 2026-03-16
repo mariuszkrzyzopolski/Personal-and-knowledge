@@ -1,15 +1,10 @@
 # Private and sensitive files
-.kilocode/
 .obsidian/
 .smart-env/
 
 # Course materials (private)
-AI_devs4/se01e01/
-AI_devs4/se01e02/
-AI_devs4/se01e03/lessons/
-AI_devs4/se01e04/lessons/
 AI_devs4/se01e04/code/transport_docs
-AI_devs4/se01e05/lessons
+*lessons*
 
 # Environment files
 *.env

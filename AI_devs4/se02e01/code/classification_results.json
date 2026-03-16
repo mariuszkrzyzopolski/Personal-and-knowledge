@@ -1,0 +1,233 @@
+[
+  {
+    "code": "i6047",
+    "description": "Reactor fuel cassette with experimental thorium-based fuel composition",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "NEU",
+        "tokens": 74,
+        "cached_tokens": 0,
+        "input_cost": 0.148,
+        "output_cost": 0.004,
+        "balance": 1.348,
+        "result": "correct classification",
+        "classified_items": 1,
+        "required_items": 10,
+        "global_cache_hit_rate": 0,
+        "global_cache_total_tokens": 74,
+        "global_cache_cached_tokens": 0
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i3879",
+    "description": "Strip of LED indicator lights wired to a crude battery pack",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "NEU",
+        "tokens": 74,
+        "cached_tokens": 59,
+        "input_cost": 0.089,
+        "output_cost": 0.004,
+        "balance": 1.255,
+        "result": "correct classification",
+        "classified_items": 2,
+        "required_items": 10,
+        "global_cache_hit_rate": 39.86,
+        "global_cache_total_tokens": 148,
+        "global_cache_cached_tokens": 59
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i5126",
+    "description": "Assault rifle lower receiver with trigger group installed",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "DNG",
+        "tokens": 71,
+        "cached_tokens": 59,
+        "input_cost": 0.083,
+        "output_cost": 0.004,
+        "balance": 1.168,
+        "result": "correct classification",
+        "classified_items": 3,
+        "required_items": 10,
+        "global_cache_hit_rate": 53.88,
+        "global_cache_total_tokens": 219,
+        "global_cache_cached_tokens": 118
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i4917",
+    "description": "Reactor fuel cassette marked as fresh, sealed in lead-lined transport container",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "NEU",
+        "tokens": 77,
+        "cached_tokens": 59,
+        "input_cost": 0.095,
+        "output_cost": 0.004,
+        "balance": 1.069,
+        "result": "correct classification",
+        "classified_items": 4,
+        "required_items": 10,
+        "global_cache_hit_rate": 59.8,
+        "global_cache_total_tokens": 296,
+        "global_cache_cached_tokens": 177
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i5237",
+    "description": "Worn-out clutch plate from agricultural machinery",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "NEU",
+        "tokens": 71,
+        "cached_tokens": 59,
+        "input_cost": 0.083,
+        "output_cost": 0.004,
+        "balance": 0.982,
+        "result": "correct classification",
+        "classified_items": 5,
+        "required_items": 10,
+        "global_cache_hit_rate": 64.31,
+        "global_cache_total_tokens": 367,
+        "global_cache_cached_tokens": 236
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i2891",
+    "description": "Handful of ceramic capacitors and resistors in an old tobacco tin",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "NEU",
+        "tokens": 76,
+        "cached_tokens": 59,
+        "input_cost": 0.093,
+        "output_cost": 0.004,
+        "balance": 0.885,
+        "result": "correct classification",
+        "classified_items": 6,
+        "required_items": 10,
+        "global_cache_hit_rate": 66.59,
+        "global_cache_total_tokens": 443,
+        "global_cache_cached_tokens": 295
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i9340",
+    "description": "Compound bow with carbon arrows and broadhead tips",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "DNG",
+        "tokens": 72,
+        "cached_tokens": 59,
+        "input_cost": 0.085,
+        "output_cost": 0.004,
+        "balance": 0.796,
+        "result": "correct classification",
+        "classified_items": 7,
+        "required_items": 10,
+        "global_cache_hit_rate": 68.74,
+        "global_cache_total_tokens": 515,
+        "global_cache_cached_tokens": 354
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i1734",
+    "description": "Cast iron flywheel weighing roughly 40 kilograms",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "NEU",
+        "tokens": 70,
+        "cached_tokens": 59,
+        "input_cost": 0.081,
+        "output_cost": 0.004,
+        "balance": 0.711,
+        "result": "correct classification",
+        "classified_items": 8,
+        "required_items": 10,
+        "global_cache_hit_rate": 70.6,
+        "global_cache_total_tokens": 585,
+        "global_cache_cached_tokens": 413
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i7165",
+    "description": "Brass knuckles with spikes and reinforced palm guard",
+    "response": {
+      "code": 1,
+      "message": "ACCEPTED",
+      "debug": {
+        "output": "DNG",
+        "tokens": 72,
+        "cached_tokens": 59,
+        "input_cost": 0.085,
+        "output_cost": 0.004,
+        "balance": 0.622,
+        "result": "correct classification",
+        "classified_items": 9,
+        "required_items": 10,
+        "global_cache_hit_rate": 71.84,
+        "global_cache_total_tokens": 657,
+        "global_cache_cached_tokens": 472
+      }
+    },
+    "status_code": 202
+  },
+  {
+    "code": "i6713",
+    "description": "Massive steel gearbox housing from a locomotive engine",
+    "response": {
+      "code": 0,
+      "message": "ACCEPTED - {FLG:SMUGGLER}",
+      "debug": {
+        "output": "NEU",
+        "tokens": 73,
+        "cached_tokens": 59,
+        "input_cost": 0.087,
+        "output_cost": 0.004,
+        "balance": 0.531,
+        "result": "correct classification",
+        "classified_items": 10,
+        "required_items": 10,
+        "global_cache_hit_rate": 72.74,
+        "global_cache_total_tokens": 730,
+        "global_cache_cached_tokens": 531,
+        "flag": "{FLG:SMUGGLER}"
+      }
+    },
+    "status_code": 202
+  }
+]

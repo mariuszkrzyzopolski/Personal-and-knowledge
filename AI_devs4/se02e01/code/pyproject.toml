@@ -1,0 +1,12 @@
+[project]
+name = "classify-items"
+version = "0.1.0"
+description = "Classify items from CSV using API"
+dependencies = [
+    "requests",
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
