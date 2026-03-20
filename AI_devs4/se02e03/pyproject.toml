@@ -1,0 +1,29 @@
+[project]
+name = "log-analyzer"
+version = "0.1.0"
+description = "Agentic log analyzer for power plant failure logs"
+requires-python = ">=3.11"
+dependencies = [
+    "dspy>=2.5",
+    "mcp>=1.5",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "tiktoken>=0.8",
+    "rich>=13.0",
+    "anyio>=4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+analyze = "src.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

@@ -4,3 +4,5 @@
 [[requirements-packagesending]] se01e04 - langchain agent, with FastAPI http response, but should be simpler.
 [[AI_devs4/se01e05/code/README|README]] Simple vanilla agent for API exploration with human-in-the-loop approach for steering. Direct connection to OpenRouter with SDK
 [[s02e01-zarzadzanie-kontekstem-w-konwersacji-1773634920]] - without readme, context engineering with simple script for item classification within budget
+[[AI_devs4/se02e02/code/README|README]] overengineered solution, need to fix
+[[AI_devs4/se02e03/README|README]] simple agentic loop was best approach, remember about using mcp tools
